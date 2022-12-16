@@ -18,7 +18,10 @@ npm i --save https://github.com/yhorian/pages-plugin-mailchannels
 
 Copy the **_middleware.ts** file from this repository over to your own /functions folder. 
 
-### Change the email inside to your own.
+### Change the email inside to your own:
+```js
+const myEmail = "example@example.com"
+```
 
 Once compiled by Cloudflare Pages, the Function will capture anything from a form with a 'data-static-form-name' attribute set, such as:
 ```html
