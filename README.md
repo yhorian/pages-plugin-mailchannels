@@ -31,6 +31,6 @@ Once compiled by Cloudflare Pages, the Function will capture anything from a for
 </body>
 ```
 
-You'll get an email from 'Contact form' with all the relevant data from the [Mailchannel API](https://mailchannels.zendesk.com/hc/en-us/articles/4565898358413-Sending-Email-from-Cloudflare-Workers-using-MailChannels-Send-API). Some restrictions apply.
+On form submit, you'll get an email from 'Contact form' with all the relevant data from the [Mailchannel API](https://mailchannels.zendesk.com/hc/en-us/articles/4565898358413-Sending-Email-from-Cloudflare-Workers-using-MailChannels-Send-API). Some restrictions apply.
 
 To use multiple middleware handlers, see this documentation on [Chaining middleware](https://developers.cloudflare.com/pages/platform/functions/middleware/).
