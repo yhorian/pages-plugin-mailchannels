@@ -2,12 +2,36 @@
 
 # MailChannels Pages Plugin
 
+This is a refactored version of the @cloudflare/pages-plugin-mailchannels plugin, which was based on the @cloudflare/pages-plugin-static-forms package.
+
+Original package documentation can be found here: https://developers.cloudflare.com/pages/platform/functions/plugins/mailchannels/
+
+Also fixed the bug that only returns 200 OK status codes.
+
 ## Installation
 
 ```sh
-npm install --save @cloudflare/pages-plugin-mailchannels
+npm install --save https://github.com/yhorian/pages-plugin-mailchannels
 ```
 
 ## Usage
 
-Documentation available on [Cloudflare's Developer Docs](https://developers.cloudflare.com/pages/platform/functions/plugins/mailchannels/).
+Copy the _middleware.ts file over to your own /functions folder. **Change the email inside to your own**.
+
+Once compiled by Cloudflare Pages, the Function will capture anything from a form with a 'data-static-form-name' attribute set, such as:
+```html
+<body>
+  <h1>Contact us</h1>
+  <form data-static-form-name="contact">
+    <label>Name <input type="text" name="name" /></label>
+    <label>Email address <input type="email" name="email" /></label>
+    <label>Message <textarea name="message"></textarea></label>
+    <button type="Submit">
+  </form>
+</body>
+```
+
+You'll get an email from 'Contact form' with all the relevant data from the Mailchannel API. Some restrictions apply:
+https://mailchannels.zendesk.com/hc/en-us/articles/4565898358413-Sending-Email-from-Cloudflare-Workers-using-MailChannels-Send-API
+
+To use multiple middleware handlers, see this documentation on Chaining middleware: https://developers.cloudflare.com/pages/platform/functions/middleware/
