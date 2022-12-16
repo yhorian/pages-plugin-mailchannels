@@ -12,14 +12,14 @@ Also fixed the bug that only returns 200 OK status codes.
 npm i --save https://github.com/yhorian/pages-plugin-mailchannels
 ```
 
-## Usage
-
-Copy the **_middleware.ts** file from this repository over to the /functions folder of your own repository. Cloudflare will then parse this into a Function when the page is compiled.
+Copy the **functions/_middleware.ts** file from this repository over to the /functions folder of your own repository. Cloudflare will then parse this into a Function when the page is compiled.
 
 Don't forget to change the email inside the **_middleware.ts** to your own. It'll throw a **512:"Could not send your email. Please try again."** error otherwise.
 ```js
 const myEmail = "example@example.com"
 ```
+
+## Usage
 
 Once compiled by Cloudflare Pages, the Function will capture anything from a form with a 'data-static-form-name' attribute set, such as:
 ```html
@@ -36,4 +36,4 @@ Once compiled by Cloudflare Pages, the Function will capture anything from a for
 
 On form submit, you'll get an email from 'Contact form' with all the relevant data from the [Mailchannel API](https://mailchannels.zendesk.com/hc/en-us/articles/4565898358413-Sending-Email-from-Cloudflare-Workers-using-MailChannels-Send-API). Some restrictions apply. A 512 error is generated every time the API rejects something as 'Spam'.
 
-To use multiple middleware handlers, see this documentation on [Chaining middleware](https://developers.cloudflare.com/pages/platform/functions/middleware/).
+To use multiple middleware handlers or change the routes used, see this documentation on [Chaining middleware](https://developers.cloudflare.com/pages/platform/functions/middleware/).
