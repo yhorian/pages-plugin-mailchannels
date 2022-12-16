@@ -14,9 +14,9 @@ npm i --save https://github.com/yhorian/pages-plugin-mailchannels
 
 ## Usage
 
-Copy the **_middleware.ts** file from this repository over to your own /functions folder. 
+Copy the **_middleware.ts** file from this repository over to the /functions folder of your own repository. Cloudflare will then parse this into a Function when the page is compiled.
 
-Change the email inside to your own. It'll throw a **512:"Could not send your email. Please try again."** error otherwise.
+Don't forget to change the email inside the **_middleware.ts** to your own. It'll throw a **512:"Could not send your email. Please try again."** error otherwise.
 ```js
 const myEmail = "example@example.com"
 ```
