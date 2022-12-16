@@ -1,6 +1,4 @@
-## Pages Plugins
-
-# MailChannels Pages Plugin
+# MailChannels Cloudflare Pages Plugin
 
 This is a refactored version of the @cloudflare/pages-plugin-mailchannels plugin, which was based on the @cloudflare/pages-plugin-static-forms package.
 
