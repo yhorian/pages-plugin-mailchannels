@@ -18,7 +18,7 @@ npm i --save https://github.com/yhorian/pages-plugin-mailchannels
 
 Copy the **_middleware.ts** file from this repository over to your own /functions folder. 
 
-Change the email inside to your own. It'll throw a 512:"Could not send your email. Please try again." error otherwise.
+Change the email inside to your own. It'll throw a **512:"Could not send your email. Please try again."** error otherwise.
 ```js
 const myEmail = "example@example.com"
 ```
