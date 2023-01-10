@@ -82,9 +82,10 @@ var onFormSubmit = async ({
   pluginArgs
 }) => {
   let body = await request.formData();
-  let token = body.get('cf-turnstile-response')
+  let token = body.get('cf-turnstile-response');
+  console.log(context);
   if (token) {
-    let SECRET_KEY = request.env.TURNSTILE_KEY;
+    let SECRET_KEY = context.env.TURNSTILE_KEY;
     if (!SECRET_KEY) {
       return new Response(`Turnstile token found - but no secrey key set. Set an Environment variable with your Turnstile secret called "TURNSTILE_KEY" under Pages > Settings > Environment variables.`, {
         status: 512
