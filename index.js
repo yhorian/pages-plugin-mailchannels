@@ -95,23 +95,21 @@ var onFormSubmit = async ({
       });
     }
     let ip = request.headers.get('CF-Connecting-IP');
-    console.log(token);
     let captchaData = new FormData();
     captchaData.append('secret', secret);
     captchaData.append('response', token);
     captchaData.append('remoteip', ip);
     let url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
     let result = await fetch(url, {
-      body: formData,
+      body: captchaData,
       method: 'POST',
     });
     let outcome = await result.json();
     console.log(outcome);
     if (!outcome.success) {
-      console.log("Token Failure!");
+      console.log("Token Failure from " + ip);
       return next();
     }
-    console.log("Token success!");
   }
   if (name) {
     formData.delete("static-form-name");
