@@ -83,7 +83,7 @@ var onFormSubmit = async ({
 }) => {
   let body = await request.formData();
   let token = body.get('cf-turnstile-response');
-  console.log(context);
+  console.log(env);
   if (token) {
     let SECRET_KEY = env.TURNSTILE_KEY;
     if (!SECRET_KEY) {
