@@ -80,7 +80,8 @@ var onFormSubmit = async ({
   next,
   pluginArgs
 }) => {
-  const token = body.get('cf-turnstile-response')
+  let body = await request.formData();
+  let token = body.get('cf-turnstile-response')
   if (token) {
     let SECRET_KEY = context.env.TURNSTILE_KEY;
     if (!SECRET_KEY) {
@@ -99,7 +100,7 @@ var onFormSubmit = async ({
       body: formData,
       method: 'POST',
     });
-    const outcome = await result.json();
+    let outcome = await result.json();
     if (!outcome.success) {
       return next();
     }
@@ -111,15 +112,15 @@ var onFormSubmit = async ({
   } catch {}
   if (name) {
     formData.delete("static-form-name");
-    const submission = {
+    let submission = {
       formData,
       name,
       request
     };
-    const personalizations = typeof pluginArgs.personalizations === "function" ? pluginArgs.personalizations(submission) : pluginArgs.personalizations;
-    const from = typeof pluginArgs.from === "function" ? pluginArgs.from(submission) : pluginArgs.from;
-    const subject = typeof pluginArgs.subject === "function" ? pluginArgs.subject(submission) : pluginArgs.subject || `New ${name} form submission`;
-    const content = pluginArgs.content ? pluginArgs.content(submission) : [{
+    let personalizations = typeof pluginArgs.personalizations === "function" ? pluginArgs.personalizations(submission) : pluginArgs.personalizations;
+    let from = typeof pluginArgs.from === "function" ? pluginArgs.from(submission) : pluginArgs.from;
+    let subject = typeof pluginArgs.subject === "function" ? pluginArgs.subject(submission) : pluginArgs.subject || `New ${name} form submission`;
+    let content = pluginArgs.content ? pluginArgs.content(submission) : [{
         type: "text/plain",
         value: textPlainContent(submission)
       },
@@ -128,7 +129,7 @@ var onFormSubmit = async ({
         value: textHTMLContent(submission)
       }
     ];
-    const {
+    let {
       success
     } = await sendEmail({
       personalizations,
