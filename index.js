@@ -77,6 +77,7 @@ var textHTMLContent = ({
 
 var onFormSubmit = async ({
   request,
+  context,
   next,
   pluginArgs
 }) => {
