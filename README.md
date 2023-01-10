@@ -4,6 +4,8 @@ This is a refactored version of the @cloudflare/pages-plugin-mailchannels plugin
 
 [Original package documentation from Cloudflare.](https://developers.cloudflare.com/pages/platform/functions/plugins/mailchannels/)
 
+Added support for Cloudflare Turnstile. Add your secret key as an environment variable named 'TURNSTILE_KEY' when installing the Turnstile code.
+
 Also fixed the bug that only returns 200 OK status codes.
 
 ## Installation
