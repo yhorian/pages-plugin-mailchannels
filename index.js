@@ -92,7 +92,7 @@ var onFormSubmit = async ({
     console.log(secret);
     console.log(env);
     console.log(formData.toString());
-    if (!SECRET_KEY) {
+    if (!secret) {
       return new Response(`Turnstile token found - but no secrey key set. Set an Environment variable with your Turnstile secret called "TURNSTILE_KEY" under Pages > Settings > Environment variables.`, {
         status: 512
       });
