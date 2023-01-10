@@ -89,15 +89,13 @@ var onFormSubmit = async ({
     secret = env.TURNSTILE_KEY.toString();
   } catch {}
   if (token) {
-    console.log(secret);
-    console.log(env);
-    console.log(formData.toString());
     if (!secret) {
       return new Response(`Turnstile token found - but no secrey key set. Set an Environment variable with your Turnstile secret called "TURNSTILE_KEY" under Pages > Settings > Environment variables.`, {
         status: 512
       });
     }
     let ip = request.headers.get('CF-Connecting-IP');
+    console.log(token);
     let captchaData = new FormData();
     captchaData.append('secret', secret);
     captchaData.append('response', token);
