@@ -85,12 +85,8 @@ var onFormSubmit = async ({
   try {
     formData = await request.formData();
     name = formData.get("static-form-name").toString();
-    token = formData.get('cf-turnstile-response');
+    token = formData.get('cf-turnstile-response').toString();
   } catch {}
-  console.log(token);
-  console.log(formData);
-  console.log(name);
-  console.log(token.toString());
   if (token) {
     let SECRET_KEY = env.TURNSTILE_KEY;
     if (!SECRET_KEY) {
@@ -98,7 +94,7 @@ var onFormSubmit = async ({
         status: 512
       });
     }
-
+    console.log(SECRET_KEY);
     let ip = request.headers.get('CF-Connecting-IP');
     let captchaData = new FormData();
     captchaData.append('secret', SECRET_KEY);
