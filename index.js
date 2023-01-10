@@ -106,6 +106,7 @@ var onFormSubmit = async ({
       method: 'POST',
     });
     let outcome = await result.json();
+    console.log(outcome);
     if (!outcome.success) {
       console.log("Token Failure!");
       return next();
