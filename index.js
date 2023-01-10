@@ -81,9 +81,12 @@ var onFormSubmit = async ({
   next,
   pluginArgs
 }) => {
-  let body = await request.formData();
-  let token = body.get('cf-turnstile-response');
-  console.log(env);
+  let formData, name, token;
+  try {
+    formData = await request.formData();
+    name = formData.get("static-form-name").toString();
+    token = formData.get('cf-turnstile-response');
+  } catch {}
   if (token) {
     let SECRET_KEY = env.TURNSTILE_KEY;
     if (!SECRET_KEY) {
@@ -104,14 +107,11 @@ var onFormSubmit = async ({
     });
     let outcome = await result.json();
     if (!outcome.success) {
+      console.log("Token Failure!");
       return next();
     }
+    console.log("Token success!");
   }
-  let formData, name;
-  try {
-    formData = await request.formData();
-    name = formData.get("static-form-name").toString();
-  } catch {}
   if (name) {
     formData.delete("static-form-name");
     let submission = {
