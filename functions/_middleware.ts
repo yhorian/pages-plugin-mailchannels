@@ -9,7 +9,7 @@ import mailChannelsPlugin from "@cardiff.marketing/pages-plugin-mailchannels";
 
 // Required properties: "personalizations", "from", "respondWith".
 // Optional Properties: "subject", "content". 
-export const onRequest: PagesFunction = mailChannelsPlugin({personalizations: emailPersonalizations, from: emailFrom, subject: emailSubject,  respondWith: formResponse});
+export const onRequest: PagesFunction = mailChannelsPlugin({turnstile: false, personalizations: emailPersonalizations, from: emailFrom, subject: emailSubject,  respondWith: formResponse});
 
 // Required. Must have "name" and "email" as below. The Mailchannel API will reject 'unsafe' email addresses. See their docs for more info.
 function emailPersonalizations() {
