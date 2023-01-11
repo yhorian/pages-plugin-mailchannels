@@ -14,7 +14,7 @@ Also fixed the bug that only returns 200 OK status codes.
 npm i --save https://github.com/yhorian/pages-plugin-mailchannels
 ```
 
-Copy the **functions/_middleware.ts** file from this repository over to the /functions folder of your own repository. Cloudflare will then parse this into a Function when the page is compiled.
+Copy the **functions/_middleware.ts** file from this repository over to the /functions folder of your own repository. Cloudflare will then parse this into a Function when the page is compiled. You also need to set "turnstile = true" in middleware.ts.
 
 Don't forget to change the email inside the **_middleware.ts** to your own. It'll throw a **512:"Could not send your email. Please try again."** error otherwise.
 ```js
