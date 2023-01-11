@@ -112,11 +112,11 @@ var onFormSubmit = async ({
       method: 'POST',
     });
     let outcome = await result.json();
-    console.log(outcome);
     if (!outcome.success) {
       console.log("Token Failure from " + ip);
       return next();
     }
+    formData.delete("cf-turnstile-response");
   }
 
   if (name) {
