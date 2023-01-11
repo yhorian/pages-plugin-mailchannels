@@ -81,14 +81,21 @@ var onFormSubmit = async ({
   next,
   pluginArgs
 }) => {
-  let formData, name, token, secret;
+  let formData, name;
   try {
     formData = await request.formData();
     name = formData.get("static-form-name").toString();
-    token = formData.get('cf-turnstile-response').toString();
-    secret = env.TURNSTILE_KEY.toString();
   } catch {}
-  if (token) {
+
+  if (pluginArgs.turnstile) {
+    let token, secret;
+    token = formData.get('cf-turnstile-response') ? formData.get('cf-turnstile-response').toString() : false;
+    secret = env.TURNSTILE_KEY ? env.TURNSTILE_KEY.toString() : false;
+    if (!token) {
+      return new Response(`Turnstile = true - but no token found. Check the widget is rendering inside the <form> of your page: https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/.`, {
+        status: 512
+      })
+    };
     if (!secret) {
       return new Response(`Turnstile token found - but no secrey key set. Set an Environment variable with your Turnstile secret called "TURNSTILE_KEY" under Pages > Settings > Environment variables.`, {
         status: 512
@@ -111,6 +118,7 @@ var onFormSubmit = async ({
       return next();
     }
   }
+
   if (name) {
     formData.delete("static-form-name");
     let submission = {
