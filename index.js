@@ -6,11 +6,13 @@ var onRequestGet = async ({
   return new HTMLRewriter().on("form", {
     element(form) {
       const formName = form.getAttribute("data-static-form-name");
-      form.setAttribute("method", "POST");
-      form.removeAttribute("action");
-      form.append(`<input type="hidden" name="static-form-name" value="${formName}" />`, {
-        html: true
-      });
+      if (formName) {
+        form.setAttribute("method", "POST");
+        form.removeAttribute("action");
+        form.append(`<input type="hidden" name="static-form-name" value="${formName}" />`, {
+          html: true
+        });
+      }
     }
   }).transform(response);
 };
